@@ -10,12 +10,12 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
 
-  <title>To Do List</title>
+  <title>CSP Computer Science</title>
 </head>
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">TO DO LIST</a>
+    <a class="navbar-brand" href="#">CSP C</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -29,64 +29,51 @@
     <form action="index.php" method="POST">
       <div class="form-row">
         <div class="form-group col-md-2">
-          <label for="tname">Task Name</label>
-          <input type="text" class="form-control" name="tname" required />
+          <label for="nim">NIM</label>
+          <input type="text" class="form-control" name="nim" required />
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group col-md-2">
-          <label for="tdeadline">Deadline</label>
-          <input class="form-control" type="date" name="tdeadline" name="tdeadline" required />
+          <label for="nama">Nama</label>
+          <input class="form-control" type="text" name="nama" required />
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group col-md-2">
-          <label for="tdetail">Detail</label>
-          <textarea class="form-control" name="tdetails" rows="3" required></textarea>
+          <label for="username">Username</label>
+          <input class="form-control" type="text" name="username" required />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-2">
+          <label for="password">Password</label>
+          <input class="form-control" type="password" name="password" required />
         </div>
       </div>
 
       <div class="row">
         <div class="form-group col-md-6">
-          <label for="tsubject">Subject</label>
+          <label for="kelas">Kelas</label>
           <div class="col-sm-10">
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="tsubject" id="tsubject1" value="RPL" />
-              <label class="form-check-label" for="tsubject1">RPL</label>
+              <input class="form-check-input" type="radio" name="kelas" id="kelasa" value="A" />
+              <label class="form-check-label" for="kelasa">A</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="tsubject" id="tsubject2" value="DPBO" />
-              <label class="form-check-label" for="tsubject2">DPBO</label>
+              <input class="form-check-input" type="radio" name="kelas" id="kelasb" value="B" />
+              <label class="form-check-label" for="kelasb">B</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="tsubject" id="tsubject3" value="Sistem Informasi" />
-              <label class="form-check-label" for="tsubject3">Sistem Informasi</label>
+              <input class="form-check-input" type="radio" name="kelas" id="kelasc1" value="C1" />
+              <label class="form-check-label" for="kelasc1">C1</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="tsubject" id="tsubject4" value="Bebas" />
-              <label class="form-check-label" for="tsubject4">Bebas</label>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="form-group col-md-6">
-          <label for="tpriority">Priority</label>
-          <div class="col-sm-10">
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="tpriority" id="tpriority1" value="Low" />
-              <label class="form-check-label" for="tpriority1">Low</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="tpriority" id="tpriority2" value="Medium" />
-              <label class="form-check-label" for="tpriority2">Medium</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="tpriority" id="tpriority3" value="High" />
-              <label class="form-check-label" for="tpriority3">High</label>
+              <input class="form-check-input" type="radio" name="kelas" id="kelasc2" value="C2" />
+              <label class="form-check-label" for="kelasc2">C2</label>
             </div>
           </div>
         </div>
@@ -96,35 +83,17 @@
     </form>
     
     <br>
-    <form action="index.php" method="POST">
-      <div class="form-row">
-        <div class="form-group col-md-2">
-          <button type="submit" name="reset" class="btn btn-success">Reset Sort</button>
-        </div>
-      </div>
-      <div class="row">
-    
-          <div class="col">
-            <button type="submit" name="subject" class="btn btn-secondary">Subject</button>
-            <button type="submit" name="priority" class="btn btn-secondary">Priority</button>
-            <button type="submit" name="deadline" class="btn btn-secondary">Deadline</button>
-            <button type="submit" name="status" class="btn btn-secondary">Status</button>
-          </div>
-        
-      </div>
-    </form>
-    <!-- Tabel 1 - Task -->
+    <!-- Tabel 1 - Pengguna -->
     <div style="display: inline-block; ">
-      <h3>TO DO</h3>
+      <h3>DATA PENGGUNA CSP Computer Science</h3>
       <!-- TABEL1 -->
-      <table align="left" border="1" style="text-align: center;">
+      <table class="table table-bordered table-hover text-center">
         <tr>
           <td>No</td>
-          <td>Name</td>
-          <td style="width: 40%;">Detail</td>
-          <td>Subject</td>
-          <td>Priority</td>
-          <td>Deadline</td>
+          <td>NIM</td>
+          <td>Nama</td>
+          <td>Username</td>
+          <td>Kelas</td>
           <td>Status</td>
           <td>Aksi</td>
         </tr>

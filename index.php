@@ -7,46 +7,31 @@ PRAKTIKUM RPL
 include("conf.php");
 include("includes/Template.class.php");
 include("includes/DB.class.php");
-include("includes/Task.class.php");
+include("includes/Pengguna.class.php");
 
 // Membuat objek dari kelas task
-$otask = new Task($db_host, $db_user, $db_password, $db_name);
-$otask->open();
+$pengguna = new Pengguna($db_host, $db_user, $db_password, $db_name);
+$pengguna->open();
 
-if (isset($_POST['subject'])) {
-	$otask->getTaskBySubject();
-}
-elseif (isset($_POST['priority'])) {
-	$otask->getTaskByPriority();
-}
-elseif (isset($_POST['deadline'])) {
-	$otask->getTaskByDeadline();
-}
-elseif (isset($_POST['status'])) {
-	$otask->getTaskByStatus();
-}
-else{
-	// Memanggil method getTask di kelas Task
-	$otask->getTask();
-}
+$pengguna->getPengguna();
 
 // Proses mengisi tabel dengan data
 $data = null;
 $no = 1;
 
-while (list($id, $tname, $tdetails, $tsubject, $tpriority, $tdeadline, $tstatus) = $otask->getResult()) {
+while (list($nim, $nama, $username, $password, $kelas, $verified) = $pengguna->getResult()) {
 	// Tampilan jika status task nya sudah dikerjakan
-	if($tstatus == "Sudah"){
+	if($verified == 1){
+		$status = "Sudah";
 		$data .= "<tr>
 		<td>" . $no . "</td>
-		<td>" . $tname . "</td>
-		<td>" . $tdetails . "</td>
-		<td>" . $tsubject . "</td>
-		<td>" . $tpriority . "</td>
-		<td>" . $tdeadline . "</td>
-		<td>" . $tstatus . "</td>
+		<td>" . $nim . "</td>
+		<td>" . $nama . "</td>
+		<td>" . $username . "</td>
+		<td>" . $kelas . "</td>
+		<td>" . $status . "</td>
 		<td>
-		<button class='btn btn-danger'><a href='index.php?id_hapus=" . $id . "' style='color: white; font-weight: bold;'>Hapus</a></button>
+		<button class='btn btn-danger'><a href='index.php?nim_hapus=" . $nim . "' style='color: white; font-weight: bold;'>Hapus</a></button>
 		</td>
 		</tr>";
 		$no++;
@@ -54,17 +39,17 @@ while (list($id, $tname, $tdetails, $tsubject, $tpriority, $tdeadline, $tstatus)
 
 	// Tampilan jika status task nya belum dikerjakan
 	else{
+		$status = "Belum";
 		$data .= "<tr>
 		<td>" . $no . "</td>
-		<td>" . $tname . "</td>
-		<td>" . $tdetails . "</td>
-		<td>" . $tsubject . "</td>
-		<td>" . $tpriority . "</td>
-		<td>" . $tdeadline . "</td>
-		<td>" . $tstatus . "</td>
+		<td>" . $nim . "</td>
+		<td>" . $nama . "</td>
+		<td>" . $username . "</td>
+		<td>" . $kelas . "</td>
+		<td>" . $status . "</td>
 		<td>
-		<button class='btn btn-danger'><a href='index.php?id_hapus=" . $id . "' style='color: white; font-weight: bold;'>Hapus</a></button>
-		<button class='btn btn-success' ><a href='index.php?id_status=" . $id .  "' style='color: white; font-weight: bold;'>Selesai</a></button>
+		<button class='btn btn-danger'><a href='index.php?nim_hapus=" . $nim . "' style='color: white; font-weight: bold;'>Hapus</a></button>
+		<button class='btn btn-success' ><a href='index.php?nim_status=" . $nim .  "' style='color: white; font-weight: bold;'>Selesai</a></button>
 		</td>
 		</tr>";
 		$no++;
@@ -72,7 +57,7 @@ while (list($id, $tname, $tdetails, $tsubject, $tpriority, $tdeadline, $tstatus)
 }
 
 // Menutup koneksi database
-$otask->close();
+$pengguna->close();
 
 // Membaca template skin.html
 $tpl = new Template("templates/skin.html");
@@ -83,30 +68,30 @@ $tpl->replace("DATA_TABEL", $data);
 // Menampilkan ke layar
 $tpl->write();
 
-$otask->open();
+$pengguna->open();
 if (isset($_POST['add'])) {
-	if ($otask->insertTask($_POST)) {
+	if ($pengguna->insertPengguna($_POST)) {
 		echo "<script>
         document.location=('index.php');
         </script>";
 	}
 }
 
-if (isset($_GET['id_hapus'])) {
-	$id = $_GET['id_hapus'];
-	if ($otask->deleteTask($id)) {
+if (isset($_GET['nim_hapus'])) {
+	$nim = $_GET['nim_hapus'];
+	if ($pengguna->deletePengguna($nim)) {
 		echo "<script>
         document.location=('index.php');
         </script>";
 	}
 }
 
-if (isset($_GET['id_status'])) {
-	$id = $_GET['id_status'];
-	if ($otask->updateTask($id)) {
+if (isset($_GET['nim_status'])) {
+	$nim = $_GET['nim_status'];
+	if ($pengguna->updatePengguna($nim)) {
 		echo "<script>
         document.location=('index.php');
         </script>";
 	}
 }
-$otask->close();
+$pengguna->close();
